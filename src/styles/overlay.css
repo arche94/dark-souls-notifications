@@ -1,0 +1,131 @@
+/**
+ * Dark Souls "You Died" Overlay Styles
+ * Full-screen overlay with Dark Souls aesthetic
+ */
+
+#dark-souls-overlay {
+    position: fixed;
+    top: calc(50% - 5rem);
+    left: 0;
+    width: 100%;
+    height: 10rem;
+    z-index: 2147483647; /* Maximum z-index to appear above everything */
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#dark-souls-overlay::before {
+    content: '';
+    position: absolute;
+    top: -1.25rem;
+    left: 0;
+    width: 100%;
+    height: 1.25rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, 0));
+}
+
+#dark-souls-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: -1.25rem;
+    left: 0;
+    width: 100%;
+    height: 1.25rem;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .85));
+}
+
+#dark-souls-overlay.ds-overlay-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#dark-souls-overlay.ds-overlay-hiding {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.ds-overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(2px);
+}
+
+.ds-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.ds-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+}
+
+.ds-text-you,
+.ds-text-died {
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 8rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    color: #8B0000;
+    text-shadow: 
+        0 0 10px rgba(139, 0, 0, 0.8),
+        0 0 20px rgba(139, 0, 0, 0.6),
+        0 0 30px rgba(139, 0, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: ds-fade-in 0.8s ease-in-out;
+}
+
+.ds-text-died {
+    animation: ds-fade-in 1.2s ease-in-out;
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ds-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .ds-text-you,
+    .ds-text-died {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ds-text-you,
+    .ds-text-died {
+        font-size: 3rem;
+    }
+}
+
+/* Ensure overlay appears above all content */
+#dark-souls-overlay * {
+    box-sizing: border-box;
+}
+

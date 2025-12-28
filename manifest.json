@@ -1,0 +1,28 @@
+{
+    "name": "Dark Souls Notifications",
+    "description": "This extension will allow to connect different browser events to a Dark Souls You Died styled message.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "dist/content/overlay.js",
+                "dist/content/content.js"
+            ],
+            "css": ["src/styles/overlay.css"],
+            "run_at": "document_idle"
+        }
+    ],
+    "background": {
+        "service_worker": "dist/background/service-worker.js"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}
