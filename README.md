@@ -1,6 +1,6 @@
 # Dark Souls notifications
 
-This project will allow to connect different browser events to a Dark Souls You Died styled message.
+Dark Souls You Died styled notification system for browsers.
 
 ## Project Structure
 

@@ -1,0 +1,26 @@
+{
+  "name": "dark-souls-notifications",
+  "version": "1.0.0",
+  "description": "Dark Souls You Died styled notification system",
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "generate-icons": "node icons/generate-icons.js",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "copyfiles -u 1 \"src/**/*.css\" dist && copyfiles -u 0 \"icons/**/*\" dist",
+    "watch": "concurrently \"tsc --watch\" \"npm run watch-assets\"",
+    "watch-assets": "nodemon --watch src --ext css,html,json,png --exec \"npm run copy-assets\"",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.3"
+  }
+}
