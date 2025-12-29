@@ -9,18 +9,23 @@
   "scripts": {
     "generate-icons": "node icons/generate-icons.js",
     "build": "tsc && npm run copy-assets",
-    "copy-assets": "copyfiles -u 1 \"src/**/*.css\" dist && copyfiles -u 0 \"icons/**/*\" dist",
+    "copy-assets": "copyfiles -u 1 \"src/**/*.css\" dist && copyfiles -u 1 \"src/**/*.html\" dist && copyfiles -u 0 \"assets/**/*\" dist",
     "watch": "concurrently \"tsc --watch\" \"npm run watch-assets\"",
-    "watch-assets": "nodemon --watch src --ext css,html,json,png --exec \"npm run copy-assets\"",
+    "watch-assets": "nodemon --watch src --watch assets --ext css,html,mp3,ttf,png --exec \"npm run copy-assets\"",
     "clean": "rm -rf dist"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@types/chrome": "^0.0.268",
     "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.1",
+    "@typescript-eslint/parser": "^8.50.1",
     "concurrently": "^8.2.2",
     "copyfiles": "^2.4.1",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
     "nodemon": "^3.0.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.50.1"
   }
 }
