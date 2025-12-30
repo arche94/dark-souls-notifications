@@ -3,7 +3,8 @@
   "description": "This extension will allow to connect different browser events to a Dark Souls You Died styled message.",
   "version": "1.0.0",
   "manifest_version": 3,
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "webRequest"],
+  "host_permissions": ["https://*.atlassian.net/*"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

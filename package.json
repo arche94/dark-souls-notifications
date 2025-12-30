@@ -8,15 +8,16 @@
   "main": "index.js",
   "scripts": {
     "generate-icons": "node icons/generate-icons.js",
-    "build": "tsc && npm run copy-assets",
+    "build": "webpack && npm run copy-assets",
     "copy-assets": "copyfiles -u 1 \"src/**/*.css\" dist && copyfiles -u 1 \"src/**/*.html\" dist && copyfiles -u 0 \"assets/**/*\" dist",
-    "watch": "concurrently \"tsc --watch\" \"npm run watch-assets\"",
+    "watch": "concurrently \"webpack --watch\" \"npm run watch-assets\"",
     "watch-assets": "nodemon --watch src --watch assets --ext css,html,mp3,ttf,png --exec \"npm run copy-assets\"",
     "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@types/chrome": "^0.0.268",
+    "@types/jquery": "^3.5.33",
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^8.50.1",
     "@typescript-eslint/parser": "^8.50.1",
@@ -25,7 +26,14 @@
     "eslint": "^9.39.2",
     "globals": "^16.5.0",
     "nodemon": "^3.0.2",
+    "ts-loader": "^9.5.4",
     "typescript": "^5.3.3",
-    "typescript-eslint": "^8.50.1"
+    "typescript-eslint": "^8.50.1",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1",
+    "wepack-cli": "^0.0.1-security"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
   }
 }
