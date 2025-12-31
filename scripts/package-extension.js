@@ -9,7 +9,8 @@ const outputZip = path.join(projectRoot, 'dark-souls-notifications.zip');
 const filesToInclude = [
   'manifest.json',
   'dist',
-  'assets'
+  'assets',
+  'PRODUCTION.md'
 ];
 
 // Files and folders to exclude
@@ -29,7 +30,6 @@ const excludePatterns = [
   /eslint\.config\.mts/,
   /\.gitignore/,
   /README\.md/,
-  /PRODUCTION\.md/,
   /PRIVACY-POLICY\.md/,
   /LICENSE/,
   /publication/
