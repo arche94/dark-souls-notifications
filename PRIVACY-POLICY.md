@@ -1,6 +1,6 @@
 # Dark Souls Notifications - Privacy Policy
 
-**Last Updated:** [Date]
+**Last Updated:** 31-12-2025
 
 ## Overview
 
