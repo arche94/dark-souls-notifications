@@ -13,9 +13,9 @@ Feel free to reach out to request support for new events.
 
 ## Supported Browsers
 
-- Microsoft Edge (143.0.3650.96+)
-- Google Chrome (143.0.7499.170+)
-- Opera Browser (125.0.5729.49+)
+- Microsoft Edge (143.0+)
+- Google Chrome (143.0+)
+- Opera Browser (125.0+)
 
 Feel free to reach out to request support for more browsers.
 
@@ -60,3 +60,13 @@ Removes all compiled `.js` files (and `.js.map` source maps).
 3. Reload the extension in your browser
 4. Relead the browser pages where you're testing the extension
 5. Test your changes
+
+## Publishing a new version
+
+To create a new deployable package, run:
+
+```bash
+npm run deploy
+```
+
+and use the resulting output archive for uploading a new version of the extension.
