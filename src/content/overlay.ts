@@ -31,7 +31,7 @@ class DarkSoulsOverlay {
   /**
    * Creates and injects the overlay into the page
    */
-  private createOverlay(text: string): void {
+  private createOverlay(text: string, color: string = ""): void {
     // Remove existing overlay if present
     this.removeOverlay();
 
@@ -42,7 +42,9 @@ class DarkSoulsOverlay {
             <div class="ds-overlay-backdrop"></div>
             <div class="ds-overlay-content">
                 <div class="ds-text-container">
-                    <h1 class="ds-text" id="ds-text">${text}</h1>
+                    <h1 class="ds-text ${
+                      color.length > 0 ? `ds-text-${color}` : ""
+                    }" id="ds-text">${text}</h1>
                 </div>
             </div>
         `;
@@ -88,9 +90,9 @@ class DarkSoulsOverlay {
   /**
    * Shows the overlay (public API)
    */
-  public show(text: string): void {
+  public show(text: string, color: string = ""): void {
     if (!this.isVisible) {
-      this.createOverlay(text);
+      this.createOverlay(text, color);
     }
   }
 }

@@ -6,7 +6,7 @@
 import $ from "jquery";
 
 interface DarkSoulsOverlay {
-  show(text: string): void;
+  show(text: string, color: string | void): void;
 }
 
 interface WindowWithOverlay extends Window {
@@ -21,6 +21,8 @@ interface WindowWithOverlay extends Window {
   const overlay = new (
     window as unknown as WindowWithOverlay
   ).DarkSoulsOverlay();
+
+  let isGitHubPullRequestClosed = true;
 
   // Inject font-face rules with extension URLs
   function injectFonts(): void {
@@ -56,6 +58,9 @@ interface WindowWithOverlay extends Window {
     document.head.appendChild(style);
   }
 
+  /**
+   * Handles the Jira task completed event
+   */
   function handleJiraTaskCompleted(): void {
     const observer = new MutationObserver((mutations: MutationRecord[]) => {
       for (const m of mutations) {
@@ -90,6 +95,37 @@ interface WindowWithOverlay extends Window {
     });
   }
 
+  /**
+   * Handles the GitHub pull request merged or closed event
+   */
+  function handleGitHubPullRequestClosed(): void {
+    const observer = new MutationObserver(() => {
+      const $state = $("#partial-discussion-header").find(".State");
+      console.log($state);
+      if ($state.length > 0) {
+        const status = $state[0]?.textContent.trim().toLowerCase();
+        console.log(status);
+        if (status === "merged") {
+          if (!isGitHubPullRequestClosed) {
+            overlay.show("PULL REQUEST MERGED");
+            isGitHubPullRequestClosed = true;
+          }
+        } else if (status === "closed") {
+          if (!isGitHubPullRequestClosed) {
+            overlay.show("PULL REQUEST CLOSED", "red");
+            isGitHubPullRequestClosed = true;
+          }
+        } else {
+          isGitHubPullRequestClosed = false;
+        }
+      }
+    });
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
   // Inject fonts immediately
   injectFonts();
 
@@ -97,8 +133,10 @@ interface WindowWithOverlay extends Window {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       handleJiraTaskCompleted();
+      handleGitHubPullRequestClosed();
     });
   } else {
     handleJiraTaskCompleted();
+    handleGitHubPullRequestClosed();
   }
 })();

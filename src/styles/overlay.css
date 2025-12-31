@@ -15,26 +15,6 @@
   transition: opacity 1s ease-in-out;
 }
 
-#dark-souls-overlay::before {
-  content: "";
-  position: absolute;
-  top: -1.25rem;
-  left: 0;
-  width: 100%;
-  height: 1.25rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
-}
-
-#dark-souls-overlay::after {
-  content: "";
-  position: absolute;
-  bottom: -1.25rem;
-  left: 0;
-  width: 100%;
-  height: 1.25rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
-}
-
 #dark-souls-overlay.ds-overlay-visible {
   opacity: 1;
   pointer-events: auto;
@@ -53,6 +33,27 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(2px);
+  z-index: 2147483646;
+}
+
+.ds-overlay-backdrop::before {
+  content: "";
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  width: 100%;
+  height: 1.25rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+}
+
+.ds-overlay-backdrop::after {
+  content: "";
+  position: absolute;
+  bottom: -1.25rem;
+  left: 0;
+  width: 100%;
+  height: 1.25rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
 }
 
 .ds-overlay-content {
@@ -62,6 +63,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
+  z-index: 2147483647;
 }
 
 .ds-text-container {
@@ -74,33 +76,31 @@
 
 .ds-text {
   font-family: "OptimusPrinceps", serif;
-  font-size: 8rem;
+  font-size: 6rem;
+  font-weight: 400;
   line-height: 1;
   margin: 0;
   padding: 0;
-  color: #f7e024;
+  color: #fdd133;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   animation: ds-fade-in 1s ease-in-out;
+  animation-fill-mode: forwards;
 }
 
-.ds-text-died {
-  animation: ds-fade-in 1s ease-in-out;
-  opacity: 0;
-  animation-fill-mode: forwards;
+.ds-text-red {
+  color: #8b0000;
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
-  .ds-text-you,
-  .ds-text-died {
+  .ds-text {
     font-size: 4rem;
   }
 }
 
 @media (max-width: 480px) {
-  .ds-text-you,
-  .ds-text-died {
+  .ds-text {
     font-size: 3rem;
   }
 }
