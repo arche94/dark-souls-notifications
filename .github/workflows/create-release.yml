@@ -48,11 +48,6 @@ jobs:
           bodyFile: RELEASE_BODY.md
           draft: false
           prerelease: false
-
-      - name: Upload release package
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ github.ref_name }}
-          allowUpdates: true
+          generateReleaseNotes: false
           artifacts: dark-souls-notifications.zip
           artifactContentType: application/zip
