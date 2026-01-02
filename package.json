@@ -15,8 +15,8 @@
     "clean": "rm -rf dist",
     "package": "node scripts/package-extension.js",
     "deploy": "npm run build && npm run package",
-    "version:bump": "git add . && git commit -m \"Bump v$npm_package_version\" && git push",
-    "version:tag": "git tag v$npm_package_version && git push origin v$npm_package_version"
+    "version:bump": "node scripts/version-bump.js",
+    "version:tag": "node scripts/version-tag.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
