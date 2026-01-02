@@ -1,0 +1,61 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the release package
+        run: npm run build && npm run package
+      
+      - name: Extract latest changelog entry
+        run: |
+        id: changelog
+        run: |
+          awk '
+            BEGIN { capture=0 }
+            /^# v/ {
+              if (capture) exit;
+              capture=1;
+              next;
+            }
+            capture { print }
+          ' CHANGELOG.md > RELEASE_BODY.md
+
+      - name: Create GitHub release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          bodyFile: RELEASE_BODY.md
+          draft: false
+          prerelease: false
+      
+      - name: Upload release package
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          allowUpdates: true
+          artifacts: dark-souls-notifications.zip
+          artifactContentType: application/zip

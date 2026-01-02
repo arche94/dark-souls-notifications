@@ -14,7 +14,9 @@
     "watch-assets": "nodemon --watch src --watch assets --ext css,html,mp3,ttf,png --exec \"npm run copy-assets\"",
     "clean": "rm -rf dist",
     "package": "node scripts/package-extension.js",
-    "deploy": "npm run build && npm run package"
+    "deploy": "npm run build && npm run package",
+    "version:bump": "git add . && git commit -m \"Bump v$npm_package_version\" && git push",
+    "version:tag": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
