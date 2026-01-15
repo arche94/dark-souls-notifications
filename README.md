@@ -13,8 +13,8 @@ Feel free to reach out to request support for new events.
 
 ## Supported Browsers
 
-- Microsoft Edge (143.0+)
-- Google Chrome (143.0+)
+- [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/dark-souls-notifications/gnifdpchdmcoinnfbkbkkeibnceiecci) (143.0+)
+- [Google Chrome](https://chromewebstore.google.com/detail/dark-souls-notifications/dgineolclphblcebjnemaggenciapdbe) (143.0+)
 - Opera Browser (125.0+)
 
 Feel free to reach out to request support for more browsers.
